@@ -45,7 +45,7 @@
         expect(time.unix()).to.equal(expectedTime.unix());
       });
 
-      it('converts local date to utc', function() {/
+      it('converts local date to utc', function() {
         //TODO test drive convversion to utc date??
       });
 
