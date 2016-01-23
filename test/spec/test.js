@@ -1,11 +1,9 @@
 (function () {
   'use strict';
 
-  describe('Give it some context', function () {
-    describe('maybe a bit more context here', function () {
-      it('should run here few assertions', function () {
+  describe('time calculation', function () {
+      it('latitude 1 should be 4 minutes ahead', function () {
 
       });
-    });
   });
 })();
