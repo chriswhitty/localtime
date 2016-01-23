@@ -1,13 +1,22 @@
 (function() {
   'use strict';
 
-  window.LocalMeanTime = function(latitude) {
+  var LocalMeanTime = function(latitude, momentProvider) {
       this.latitude = latitude;
+      this.momentProvider = momentProvider;
   };
 
-  window.LocalMeanTime.prototype.offsetFromUTC = function() {
+  LocalMeanTime.prototype.offsetFromUTC = function() {
       return 4 * this.latitude;
   };
 
+  LocalMeanTime.prototype.calculate = function() {
+    var now = this.momentProvider();
+    var offset = this.offsetFromUTC();
+
+    return now.add(offset, 'minute');
+  };
+
+  window.LocalMeanTime = LocalMeanTime;
 
 })();
