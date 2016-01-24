@@ -1,13 +1,13 @@
 (function() {
   'use strict';
 
-  var LocalMeanTime = function(latitude, momentProvider) {
-      this.latitude = latitude;
+  var LocalMeanTime = function(longitude, momentProvider) {
+      this.longitude = longitude;
       this.momentProvider = momentProvider;
   };
 
   LocalMeanTime.prototype.offsetFromUTC = function() {
-      return 4 * this.latitude;
+      return 4 * this.longitude;
   };
 
   LocalMeanTime.prototype.calculate = function() {
