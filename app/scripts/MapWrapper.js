@@ -30,7 +30,11 @@
   MapWrapper.prototype.create = function() {
     this.map = new google.maps.Map(this.targetElement, {
       center: {lat: 0, lng: 0},
-      zoom: 15
+      zoom: 15,
+      scrollwheel: false,
+      disableDefaultUI: true,
+      zoomControl: true
+
     });
   };
 
