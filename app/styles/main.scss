@@ -24,17 +24,10 @@ body {
 
 $theme-main: #6f5499;
 
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
-.footer {
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-/* Custom page header */
 .header {
 
+  padding-left: 30px;
+  padding-right: 15px;
   /* Make the masthead heading the same height as the navigation */
   h3 {
     color: $theme-main;
@@ -70,14 +63,6 @@ $theme-main: #6f5499;
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
-  .container {
-    max-width: 730px;
-  }
 
 
-
-  /* Remove the bottom border on the jumbotron for visual effect */
-  .jumbotron {
-    border-bottom: 0;
-  }
 }
