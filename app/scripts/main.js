@@ -2,9 +2,11 @@
 (function() {
   'use strict';
 
-  function loadPage() {
+  var Main = function() {};
+
+  Main.prototype.loadPage = function() {
     this.map = new MapWrapper(document.getElementById('map'));
-    map.create();
+    this.map.create();
 
     var geolocator = new Geolocator();
 
@@ -15,36 +17,48 @@
         map.showError(message);
     };
 
-    geolocator.determineUsersLocation(geolocationSuccess.bind(this), geolocationFailure);
+    geolocator.determineUsersLocation(this.geolocationSuccess.bind(this), geolocationFailure);
 
   }
 
-  function geolocationSuccess(position) {
+  Main.prototype.geolocationSuccess = function(position) {
     var longitude = position.coords.longitude;
     var pos = {
       lat: position.coords.latitude,
       lng: longitude
     };
 
+
     this.map.navigateToPosition(pos);
-    this.map.showError('Location found.');
 
+    this.map.setMarker(pos, function(position) {
+      this.updatePositionForTime(position);
+    }.bind(this));
 
-
-    var displayElement = document.getElementById("localMeanTime");
-
-    var localMeanTimeCalculator = new LocalMeanTime(longitude, function() {return moment()});
-
-    setInterval(function() {
-      var localMeanTime = localMeanTimeCalculator.calculate();
-      var timeString  = localMeanTime.format('HH:mm:ss');
-      displayElement.innerText = timeString;
-    }, 1000);
-
+    this.updatePositionForTime(pos);
 
   }
 
-  window.initMap = loadPage;
+  Main.prototype.updatePositionForTime = function(position) {
+    if(this.interval !== undefined) {
+      clearInterval(this.interval);
+    }
+
+    var displayElement = document.getElementById("localMeanTime");
+
+    var longitude = position.lng;
+    var localMeanTimeCalculator = new LocalMeanTime(longitude, function() {return moment()});
+
+    this.interval = setInterval(function() {
+      var localMeanTime = localMeanTimeCalculator.calculate();
+      var timeString  = localMeanTime.format('HH:mm:ss');
+      displayElement.innerText = timeString;
+    }, 500);
+  };
+
+  window.initMap = function() {
+    new Main().loadPage();
+  };
 
 
 })();

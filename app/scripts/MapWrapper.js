@@ -12,6 +12,21 @@
     infoWindow.setContent(message);
   };
 
+  MapWrapper.prototype.setMarker = function(position, callback) {
+    var marker = new google.maps.Marker({
+      position: position,
+      map: this.map,
+      draggable: true
+    });
+
+    marker.addListener('dragend', function(args) {
+      callback({
+         lat: args.latLng.lat(),
+         lng: args.latLng.lng()
+      });
+    }.bind(this));
+  };
+
   MapWrapper.prototype.create = function() {
     this.map = new google.maps.Map(this.targetElement, {
       center: {lat: 0, lng: 0},
