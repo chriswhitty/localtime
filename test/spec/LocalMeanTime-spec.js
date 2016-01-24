@@ -1,3 +1,4 @@
+/*globals LocalMeanTime, moment, expect */
 (function () {
   'use strict';
 
@@ -7,7 +8,7 @@
     var testTime;
 
     before(function() {
-      testTime = moment("2015-01-01 12:30:10");
+      testTime = moment('2015-01-01 12:30:10');
       momentProvider = function() {
         return testTime;
       };
@@ -40,7 +41,7 @@
     describe('local mean time calculation', function() {
 
       it('is calculated as an offset from UTC', function() {
-        var expectedTime = moment("2015-01-01 12:40:10")
+        var expectedTime = moment('2015-01-01 12:40:10');
         var time = new LocalMeanTime(2.5, momentProvider).calculate();
         expect(time.unix()).to.equal(expectedTime.unix());
       });
