@@ -7,8 +7,9 @@
   };
 
   MapWrapper.prototype.showError = function(message) {
-    this.infoWindow.setPosition(this.map.getCenter());
-    this.infoWindow.setContent(message);
+    var infoWindow = new google.maps.InfoWindow({map: this.map});
+    infoWindow.setPosition(this.map.getCenter());
+    infoWindow.setContent(message);
   };
 
   MapWrapper.prototype.create = function() {
@@ -16,7 +17,6 @@
       center: {lat: 0, lng: 0},
       zoom: 15
     });
-    this.infoWindow = new google.maps.InfoWindow({map: this.map});
   };
 
   MapWrapper.prototype.navigateToPosition = function(position) {

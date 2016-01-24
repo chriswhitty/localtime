@@ -2,7 +2,7 @@
 (function() {
   'use strict';
 
-  function createMap() {
+  function loadPage() {
     var map = new MapWrapper(document.getElementById('map'));
     map.create();
 
@@ -29,7 +29,7 @@
 
   }
 
-  window.initMap = createMap;
+  window.initMap = loadPage;
 
 
 })();
