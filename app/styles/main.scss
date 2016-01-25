@@ -14,7 +14,6 @@ $icon-font-path: '../fonts/';
 
 /* Space out content a bit */
 body {
-  padding-top: 20px;
   padding-bottom: 20px;
 }
 
@@ -26,15 +25,18 @@ $theme-main: #6f5499;
 
 .header {
 
+  padding-top: 5px;
+  padding-bottom: 5px;
   padding-left: 30px;
   padding-right: 15px;
   /* Make the masthead heading the same height as the navigation */
   h3 {
+    font-family: Lobster;
+    font-size: 30pt;
     color: $theme-main;
     margin-top: 0;
     margin-bottom: 0;
     line-height: 40px;
-    padding-bottom: 19px;
   }
 }
 
