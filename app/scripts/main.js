@@ -14,8 +14,8 @@
        var message = browserHasGeolocation ?
                 'Error: The Geolocation service failed.' :
                 'Error: Your browser doesn\'t support geolocation.';
-        map.showError(message);
-    };
+        this.map.showError(message);
+    }.bind(this);
 
     geolocator.determineUsersLocation(this.geolocationSuccess.bind(this), geolocationFailure);
 
