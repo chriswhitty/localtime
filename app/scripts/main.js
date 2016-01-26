@@ -1,4 +1,4 @@
-/*global MapWrapper Geolocator*/
+/*global moment MapWrapper Geolocator LocalMeanTime*/
 (function() {
   'use strict';
 
@@ -19,7 +19,7 @@
 
     geolocator.determineUsersLocation(this.geolocationSuccess.bind(this), geolocationFailure);
 
-  }
+  };
 
   Main.prototype.geolocationSuccess = function(position) {
     var longitude = position.coords.longitude;
@@ -31,27 +31,27 @@
 
     this.map.navigateToPosition(pos);
 
-    this.map.setMarker(pos, function(position) {
-      this.updatePositionForTime(position);
+    this.map.setMarker(pos, function(dragPosition) {
+      this.updatePositionForTime(dragPosition);
     }.bind(this));
 
     this.updatePositionForTime(pos);
 
-  }
+  };
 
   Main.prototype.updatePositionForTime = function(position) {
     if(this.interval !== undefined) {
       clearInterval(this.interval);
     }
 
-    var displayElement = document.getElementById("localMeanTime");
+    var displayElement = document.getElementById('localMeanTime');
 
     var longitude = position.lng;
-    var localMeanTimeCalculator = new LocalMeanTime(longitude, function() {return moment()});
+    var localMeanTimeCalculator = new LocalMeanTime(longitude, function() {return moment(); });
 
     this.interval = setInterval(function() {
       var localMeanTime = localMeanTimeCalculator.calculate();
-      var timeString  = localMeanTime.format('HH:mm:ss');
+      var timeString = localMeanTime.format('HH:mm:ss');
       displayElement.innerText = timeString;
     }, 500);
   };
