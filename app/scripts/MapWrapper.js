@@ -24,7 +24,7 @@
          lat: args.latLng.lat(),
          lng: args.latLng.lng()
       });
-    }.bind(this));
+    });
   };
 
   MapWrapper.prototype.create = function() {
