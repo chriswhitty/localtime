@@ -47,7 +47,15 @@
       });
 
       it('converts local date to utc', function() {
-        //TODO test drive convversion to utc date??
+        var laTime = testTime.clone().utcOffset(-8);
+
+        var time = new LocalMeanTime(0, function() {
+          return laTime;
+        }).calculate();
+
+        // Regardless of the offset, the time at 0 longitude
+        // Should always the be UTC time
+        expect(time.format()).to.equal(testTime.format());
       });
 
     });

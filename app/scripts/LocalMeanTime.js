@@ -7,14 +7,15 @@
   };
 
   LocalMeanTime.prototype.offsetFromUTC = function() {
-      return 4 * this.longitude;
+      var minutesPerLongitude = 4;
+      return minutesPerLongitude * this.longitude;
   };
 
   LocalMeanTime.prototype.calculate = function() {
     var now = this.momentProvider();
     var offset = this.offsetFromUTC();
 
-    return now.add(offset, 'minute');
+    return now.utc().add(offset, 'minute');
   };
 
   window.LocalMeanTime = LocalMeanTime;
