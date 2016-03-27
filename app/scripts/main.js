@@ -10,7 +10,7 @@
 
     var geolocator = new Geolocator();
 
-    var geolocationFailure = function(browserHasGeolocation) {
+    var geolocationFailure = function() {
       this.setPosition({
         lat: 51.4780,
         lng: 0
