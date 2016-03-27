@@ -61,6 +61,17 @@ $theme-main: #6f5499;
   font-size: 21px;
   margin-top: 130px;
   padding: 20px;
+  p {
+    margin-bottom: 20px;
+  }
+  a {
+    color: white;
+    text-decoration: underline
+  }
+  a:visited {
+    color: #d3d3d3;
+    text-decoration: underline
+  }
 }
 
 /* Responsive: Portrait tablets and up */
