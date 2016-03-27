@@ -11,31 +11,32 @@
     var geolocator = new Geolocator();
 
     var geolocationFailure = function(browserHasGeolocation) {
-       var message = browserHasGeolocation ?
-                'Error: The Geolocation service failed.' :
-                'Error: Your browser doesn\'t support geolocation.';
-        this.map.showError(message);
+      this.setPosition({
+        lat: 51.4780,
+        lng: 0
+      });
     }.bind(this);
 
-    geolocator.determineUsersLocation(this.geolocationSuccess.bind(this), geolocationFailure);
+    var geolocationSuccess = function(position) {
+      this.setPosition({
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      });
+    }.bind(this);
 
+    geolocator.determineUsersLocation(geolocationSuccess, geolocationFailure);
   };
 
-  Main.prototype.geolocationSuccess = function(position) {
-    var longitude = position.coords.longitude;
-    var pos = {
-      lat: position.coords.latitude,
-      lng: longitude
-    };
 
+  Main.prototype.setPosition = function(position) {
 
-    this.map.navigateToPosition(pos);
+    this.map.navigateToPosition(position);
 
-    this.map.setMarker(pos, function(dragPosition) {
+    this.map.setMarker(position, function(dragPosition) {
       this.updatePositionForTime(dragPosition);
     }.bind(this));
 
-    this.updatePositionForTime(pos);
+    this.updatePositionForTime(position);
 
   };
 
