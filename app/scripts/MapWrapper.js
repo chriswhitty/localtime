@@ -30,8 +30,8 @@
   MapWrapper.prototype.create = function() {
     this.map = new google.maps.Map(this.targetElement, {
       center: {lat: 0, lng: 0},
-      zoom: 10,
-      scrollwheel: false,
+      zoom: 8,
+      scrollwheel: true,
       disableDefaultUI: true,
       zoomControl: true
 
